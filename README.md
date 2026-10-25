@@ -2,20 +2,26 @@
 
 Platform belajar mahasiswa yang ringan untuk membuat, berbagi, dan membaca materi kuliah. Dirancang untuk mahasiswa yang mengandalkan koneksi internet lambat atau terbatas.
 
+Submission untuk Hacktiv8 x IBM SkillsBuild oleh
+Nama: Affan Haidar Maulana
+NRP: 5027261054
+Fakultas/Departemen: FTEIC/Teknologi Informasi
+Sesi kelas: 25 Oktober (offline)
+
 ## Fitur Utama
 
-- 📚 **Perpustakaan** — jelajahi materi yang diterbitkan berdasarkan kategori, pencarian, dan pengurutan
-- ✏️ **Editor teks kaya** — editor Tiptap dengan heading, daftar, blok kode, gambar, dan tautan
-- 🔢 **Render matematika** — KaTeX untuk persamaan LaTeX (`$...$` inline, `$$...$$` blok)
-- 🔐 **Autentikasi** — login dengan username + kata sandi, tanpa email
-- 🌙 **Mode gelap** — toggle tema terang/gelap/sistem yang persisten
-- 📱 **Responsif** — bisa digunakan di desktop, tablet, dan smartphone
-- 🖼️ **Unggah gambar** — penyimpanan lokal (JPEG, PNG, WebP, maks. 2 MB)
-- 🚀 **Hemat kuota** — halaman di-render di server, editor dimuat secara lazy, bundle JS minimal
+- Cari dan baca materi yang diterbitkan berdasarkan kategori, pencarian, dan pengurutan
+- Editor dengan heading, daftar, blok kode, gambar, dan hyperlink
+- KaTeX untuk persamaan LaTeX (`$...$` inline, `$$...$$` blok)
+- Login dengan username + kata sandi (TODO: login dan verifikasi via email)
+- Dark Mode
+- Layout resposif di desktop, tablet, dan smartphone
+- Upload gambar untuk digunakan pada materi buatanmu (JPEG, PNG, WebP, maks. 2 MB)
+- Halaman di-render di server, editor dimuat secara lazy, bundle JS minimal
 
 ## Tech Stack
 
-| Lapisan | Teknologi |
+| Type | Teknologi |
 |---|---|
 | Framework | Next.js 14 App Router + TypeScript |
 | Styling | Tailwind CSS |
@@ -27,17 +33,17 @@ Platform belajar mahasiswa yang ringan untuk membuat, berbagi, dan membaca mater
 
 ---
 
-## Memulai dengan Cepat
+## Running
 
-### 1. Prasyarat
+### 1. Kebutuhan
 
-- **Node.js** versi 18 atau lebih baru
-- **npm** versi 9 atau lebih baru
+- **Node.js** 18+
+- **npm** 9+
 
-### 2. Clone dan install dependensi
+### 2. Clone dan install paket
 
 ```bash
-git clone <url-repositori-kamu>
+git clone https://github.com/Affan2008/BagiMateri.git
 cd BagiMateri
 npm install
 ```
@@ -53,16 +59,15 @@ cp .env.example .env
 Edit file `.env`:
 
 ```env
-# Buat secret yang kuat: openssl rand -base64 32
-NEXTAUTH_SECRET=kunci-rahasia-kamu-di-sini
+NEXTAUTH_SECRET=insert-secret-key-here
 
-# Path database SQLite (relatif terhadap root proyek)
+# Path database SQLite (dari folder utama projek)
 DATABASE_URL="file:./prisma/dev.db"
 
 NEXTAUTH_URL=http://localhost:3000
 ```
 
-> **Penting:** `NEXTAUTH_SECRET` wajib diisi. Buat nilainya dengan:
+> Nilai `NEXTAUTH_SECRET` bisa dibuat dengan:
 > ```bash
 > node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 > ```
@@ -83,31 +88,62 @@ npx prisma migrate dev --name init
 npm run db:seed
 ```
 
-Perintah ini membuat:
-- **6 kategori**: Kalkulus I, Mekanika Fisika, Akuntansi Dasar, Struktur Data, Aljabar Linear, Matematika Diskret
+Isi data demo saat ini:
+- **6 kategori**: Calculus I, Physics Mechanics, Accounting Basics, Data Structures, Linear Algebra, Discreet Mathematics
 - **2 pengguna demo**: `demo1` / `demo1234` dan `demo2` / `demo1234`
 - **4 materi yang diterbitkan** dengan konten realistis termasuk persamaan LaTeX dan cuplikan kode
 
-### 6. Jalankan server pengembangan
+(note: saat ini isi data demo berada dalam Bahasa Inggris)
+
+### 6. Jalankan server
 
 ```bash
 npm run dev
 ```
 
-Buka [http://localhost:3000](http://localhost:3000) di browser kamu.
+Buka [http://localhost:3000](http://localhost:3000) di browser.
+
 
 ---
 
-## Setup Satu Langkah (alternatif)
+## Kredensial Demo
 
-```bash
-cp .env.example .env
-# Edit .env untuk mengisi NEXTAUTH_SECRET
-npm run setup
-npm run dev
-```
+Login dengan salah satu akun berikut:
+
+| Username | Kata Sandi |
+|---|---|
+| `demo1` | `demo1234` |
+| `demo2` | `demo1234` |
 
 ---
+
+
+## Menulis Persamaan Matematika
+
+Editor mendukung LaTeX math via KaTeX:
+
+- **Math inline**: apit dengan tanda dolar tunggal — `$x^2 + y^2 = r^2$`
+- **Math blok**: apit dengan tanda dolar ganda — `$$\int_0^\infty e^{-x^2}\,dx$$`
+
+---
+
+## Upload Gambar
+
+- Format yang diterima: JPEG, PNG, WebP
+- Ukuran file maksimum: 2 MB
+- Gambar disimpan di `public/uploads/` dengan nama file UUID
+- Direktori `public/uploads/` dikecualikan dari version control
+
+---
+
+## Catatan
+
+Proyek saat ini dibuat untuk **dijalankan secara lokal**.
+
+---
+
+
+
 
 ## Daftar Skrip
 
@@ -122,18 +158,6 @@ npm run dev
 | `npm run db:studio` | Buka Prisma Studio (browser database) |
 | `npm run setup` | Setup lengkap: generate + migrate + seed |
 
----
-
-## Kredensial Demo
-
-Setelah seeding, login dengan salah satu akun berikut:
-
-| Username | Kata Sandi |
-|---|---|
-| `demo1` | `demo1234` |
-| `demo2` | `demo1234` |
-
----
 
 ## Struktur Proyek
 
@@ -182,40 +206,3 @@ Setelah seeding, login dengan salah satu akun berikut:
 └── README.md
 ```
 
----
-
-## Menulis Persamaan Matematika
-
-Editor mendukung LaTeX math via KaTeX:
-
-- **Math inline**: apit dengan tanda dolar tunggal — `$x^2 + y^2 = r^2$`
-- **Math blok**: apit dengan tanda dolar ganda — `$$\int_0^\infty e^{-x^2}\,dx$$`
-
----
-
-## Unggah Gambar
-
-- Format yang diterima: JPEG, PNG, WebP
-- Ukuran file maksimum: 2 MB
-- Gambar disimpan di `public/uploads/` dengan nama file UUID
-- Direktori `public/uploads/` dikecualikan dari version control
-
----
-
-## Catatan Deployment
-
-Proyek ini dirancang untuk **pengembangan lokal**. Untuk deployment produksi:
-
-1. Ganti SQLite dengan PostgreSQL atau MySQL (perbarui provider di `prisma/schema.prisma`)
-2. Gunakan solusi penyimpanan persisten untuk unggahan gambar (misalnya bucket S3-compatible)
-3. Tetapkan `NEXTAUTH_SECRET` yang kuat dan batasi `NEXTAUTH_URL` ke domain kamu
-4. Jalankan `npm run build` lalu `npm start`
-
----
-
-## Keterbatasan yang Diketahui
-
-- **SQLite** tidak direkomendasikan untuk beban tulis-bersamaan di produksi; untuk produksi, migrasi ke PostgreSQL
-- **Penyimpanan gambar lokal** — file yang diunggah disajikan dari `public/uploads/`. Ini berfungsi untuk pengembangan lokal, tetapi tidak direplikasi antar deployment terdistribusi
-- **Tidak ada pemulihan email** — reset kata sandi memerlukan akses database langsung (ini disengaja — tidak ada ketergantungan email)
-- Renderer KaTeX memproses HTML di sisi klien; dokumen yang sangat besar mungkin mengalami kilasan singkat sebelum matematika di-render
