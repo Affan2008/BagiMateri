@@ -7,7 +7,7 @@ Submission untuk Hacktiv8 x IBM SkillsBuild oleh
 
 ```
 Nama: Affan Haidar Maulana
-NRP: 5027261054
+Asal kampus: Institut Teknologi Sepuluh Nopember
 Fakultas/Departemen: FTEIC/Teknologi Informasi
 Sesi kelas: 25 Oktober (offline)
 ```
