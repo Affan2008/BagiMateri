@@ -2,11 +2,15 @@
 
 Platform belajar mahasiswa yang ringan untuk membuat, berbagi, dan membaca materi kuliah. Dirancang untuk mahasiswa yang mengandalkan koneksi internet lambat atau terbatas.
 
+
 Submission untuk Hacktiv8 x IBM SkillsBuild oleh
+
+```
 Nama: Affan Haidar Maulana
 NRP: 5027261054
 Fakultas/Departemen: FTEIC/Teknologi Informasi
 Sesi kelas: 25 Oktober (offline)
+```
 
 ## Fitur Utama
 
