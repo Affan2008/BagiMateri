@@ -66,7 +66,7 @@ Edit file `.env`:
 NEXTAUTH_SECRET=insert-secret-key-here
 
 # Path database SQLite (dari folder utama projek)
-DATABASE_URL="file:./prisma/dev.db"
+DATABASE_URL="file:./prisma/prisma/dev.db"
 
 NEXTAUTH_URL=http://localhost:3000
 ```
